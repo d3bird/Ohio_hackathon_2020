@@ -108,7 +108,6 @@ public class data_importing {
 				covid_data_points.add(temp);
 				count++;
 			}
-			// do something with the data
 		}
 		csvReader.close();
 		System.out.println(count);
