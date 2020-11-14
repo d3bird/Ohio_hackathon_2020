@@ -69,7 +69,7 @@ public class data_processing {
 			if (covid_data_points.get(i).hospital_count != -1) {
 				hospital_t = covid_data_points.get(i).hospital_count;
 			}
-			
+			//System.out.println(covid_data_points.get(i).onset_date);
 			if (l_county.equals(covid_data_points.get(i).county)) {
 				temp_c.age_date_data.add(temp_a);
 				temp_a = new age_data();

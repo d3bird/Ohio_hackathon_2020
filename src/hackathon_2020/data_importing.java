@@ -55,21 +55,21 @@ public class data_importing {
 				} else {
 					temp.age_range = data[2];
 				}
-
+				//System.out.println(data[3]);
 				if (data[3].equals("")) {
 					temp.onset_date = "-1";
 				} else {
-					temp.onset_date = data[4];
+					temp.onset_date = data[3];
 				}
 				if (data[4].equals("")) {
 					temp.death_date = "-1";
 				} else {
-					temp.death_date = data[5];
+					temp.death_date = data[4];
 				}
 				if (data[5].equals("")) {
 					temp.admin_date = "-1";
 				} else {
-					temp.admin_date = data[6];
+					temp.admin_date = data[5];
 				}
 				try {
 					if (data[6].equals("")) {
