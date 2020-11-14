@@ -12,31 +12,31 @@ public class data_processing {
 	}
 	
 	public void process_data() {
-		
-		
+		int death =0;
+		int cases =0;
+		int hospital =0;
+		for(int i =0; i<covid_data_points.size();i++) {
+			//covid_data_points.get(i).print();
+			if(covid_data_points.get(i).death_count != -1) {
+				death+=covid_data_points.get(i).death_count;
+			}
+			if(covid_data_points.get(i).case_count != -1) {
+				cases+=covid_data_points.get(i).case_count;
+			}
+			if(covid_data_points.get(i).hospital_count != -1) {
+				hospital+=covid_data_points.get(i).hospital_count;
+			}
+		}
+		System.out.println("death: "+death);
+		System.out.println("cases: "+cases);
+		System.out.println("hospital: "+hospital);
 	}
 	
 	
 	private void get_data() {
-		county = data.getCounty();
-		gender = data.getGender();
-		age_range = data.getAge_range();
-		onset_date = data.getDate();
-		death_date = data.getDeath_date();
-		admin_date = data.getAdmin_date();
-		case_count = data.getCase_count();
-		death_count = data.getDeath_count();
-		hospital_count = data.getHospital_count();
+		covid_data_points = data.getCovid_data_points();
 	}
 	
-	private Vector<Integer> county;
-	private Vector<Integer> gender;
-	private Vector<Integer> age_range;
-	private Vector<String> onset_date;
-	private Vector<String> death_date;
-	private Vector<String> admin_date;
-	private Vector<Integer> case_count;
-	private Vector<Integer> death_count;
-	private Vector<Integer> hospital_count;
+	private Vector<covid_data_point> covid_data_points;
 	
 }
