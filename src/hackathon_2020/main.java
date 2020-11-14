@@ -11,18 +11,16 @@ public class main {
 			data = new data_importing();
 			data_processing proccessed_data = new data_processing(data);
 			proccessed_data.process_data();
+			 java.awt.EventQueue.invokeLater(new Runnable() {
+		            public void run() {
+		                new GUI(proccessed_data).setVisible(true);
+		            }
+		        });
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("there was a problem opening a file");
 			e.printStackTrace();
 		}
-		
-		 java.awt.EventQueue.invokeLater(new Runnable() {
-	            public void run() {
-	                new GUI().setVisible(true);
-	            }
-	        });
-
-		
+	
 	}
-
 }

@@ -1,14 +1,42 @@
 package hackathon_2020;
 
+import java.util.Vector;
+
 public class GUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GUI
      */
-    public GUI() {
+	
+	data_processing data_set;
+	private Vector<condensed_covid_data> data_points;
+	String county_list[];
+    public GUI(data_processing i) {
+    	data_set =i;
+    	data_points = i.getCondensed_covid_data_points();
+    	create_list_counties();
         initComponents();
+        
+        //preset each of the sections 
+        int index = county_1_sel.getSelectedIndex();
+        death_count_1.setText(String.valueOf(data_points.get(index).death_count));
+        case_count_num_1.setText(String.valueOf(data_points.get(index).case_count));
+        hosp_count_1.setText(String.valueOf(data_points.get(index).hospital_count));
+        
+        index = county_2_sel.getSelectedIndex();
+        death_count_2.setText(String.valueOf(data_points.get(index).death_count));
+        case_count_num_2.setText(String.valueOf(data_points.get(index).case_count));
+        hosp_count_2.setText(String.valueOf(data_points.get(index).hospital_count));
+        
     }
 
+    
+    private void create_list_counties() {
+    	county_list = new String[data_points.size()];
+    	for(int i =0; i < data_points.size();i++) {
+    		county_list[i] = data_points.get(i).county;
+    	}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,7 +72,8 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        county_1_sel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+       
+        county_1_sel.setModel(new javax.swing.DefaultComboBoxModel<>(county_list));
         county_1_sel.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 county_1_selItemStateChanged(evt);
@@ -53,7 +82,7 @@ public class GUI extends javax.swing.JFrame {
 
         county_1_lab.setText("county 1");
 
-        county_2_sel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        county_2_sel.setModel(new javax.swing.DefaultComboBoxModel<>(county_list));
         county_2_sel.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 county_2_selItemStateChanged(evt);
@@ -312,46 +341,20 @@ public class GUI extends javax.swing.JFrame {
 
     private void county_2_selItemStateChanged(java.awt.event.ItemEvent evt) {                                              
         System.out.println(county_2_sel.getSelectedIndex());//what index posiition in the list is changed to 
+        int index = county_2_sel.getSelectedIndex();
+        death_count_2.setText(String.valueOf(data_points.get(index).death_count));
+        case_count_num_2.setText(String.valueOf(data_points.get(index).case_count));
+        hosp_count_2.setText(String.valueOf(data_points.get(index).hospital_count));
     }                                             
 
     private void county_1_selItemStateChanged(java.awt.event.ItemEvent evt) {                                              
-        System.out.println(county_2_sel.getSelectedIndex());//what index posiition in the list is changed to 
+        System.out.println(county_1_sel.getSelectedIndex());//what index posiition in the list is changed to 
+        int index = county_1_sel.getSelectedIndex();
+        death_count_1.setText(String.valueOf(data_points.get(index).death_count));
+        case_count_num_1.setText(String.valueOf(data_points.get(index).case_count));
+        hosp_count_1.setText(String.valueOf(data_points.get(index).hospital_count));
     }                                             
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GUI().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton age_chart_1;

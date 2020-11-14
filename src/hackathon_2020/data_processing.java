@@ -138,4 +138,12 @@ public class data_processing {
 	private Vector<covid_data_point> covid_data_points;
 	private Vector<condensed_covid_data> condensed_covid_data_points;
 
+	public Vector<covid_data_point> getCovid_data_points() {
+		return covid_data_points;
+	}
+
+	public Vector<condensed_covid_data> getCondensed_covid_data_points() {
+		return condensed_covid_data_points;
+	}
+	
 }
