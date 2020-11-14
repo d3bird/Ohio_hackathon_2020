@@ -25,6 +25,8 @@ public class data_processing {
 		if (covid_data_points.get(1).hospital_count != -1) {
 			hospital += covid_data_points.get(1).hospital_count;
 		}
+		Vector<county_info> county_data = data.getCounty_data();
+
 		condensed_covid_data temp_c;
 		age_data temp_a;
 		temp_a = new age_data();
@@ -46,7 +48,7 @@ public class data_processing {
 
 		for (int i = 2; i < covid_data_points.size() - 1; i++) {
 			// covid_data_points.get(i).print();
-			
+
 			if (covid_data_points.get(i).death_count != -1) {
 				death += covid_data_points.get(i).death_count;
 			}
@@ -56,10 +58,10 @@ public class data_processing {
 			if (covid_data_points.get(i).hospital_count != -1) {
 				hospital += covid_data_points.get(i).hospital_count;
 			}
-			
-			int death_t =0;
-			int cases_t =0;
-			int hospital_t =0;
+
+			int death_t = 0;
+			int cases_t = 0;
+			int hospital_t = 0;
 			if (covid_data_points.get(i).death_count != -1) {
 				death_t = covid_data_points.get(i).death_count;
 			}
@@ -69,20 +71,20 @@ public class data_processing {
 			if (covid_data_points.get(i).hospital_count != -1) {
 				hospital_t = covid_data_points.get(i).hospital_count;
 			}
-			//System.out.println(covid_data_points.get(i).onset_date);
+			// System.out.println(covid_data_points.get(i).onset_date);
 			if (l_county.equals(covid_data_points.get(i).county)) {
 				temp_c.age_date_data.add(temp_a);
 				temp_a = new age_data();
-				temp_a.age_range =covid_data_points.get(i).age_range;
-				temp_a.date =covid_data_points.get(i).onset_date;
+				temp_a.age_range = covid_data_points.get(i).age_range;
+				temp_a.date = covid_data_points.get(i).onset_date;
 				temp_a.case_count = cases_t;
 				temp_a.death_count = death_t;
 				temp_a.hospital_count = hospital_t;
-				
+
 				temp_c.case_count += cases_t;
 				temp_c.death_count += death_t;
 				temp_c.hospital_count += hospital_t;
-				
+
 			} else {
 				temp_c.age_date_data.add(temp_a);
 				condensed_covid_data_points.add(temp_c);
@@ -110,24 +112,42 @@ public class data_processing {
 		System.out.println("hospital: " + hospital);
 		System.out.println("county num: " + condensed_covid_data_points.size());
 		System.out.println();
-		
-		int death_t =0;
-		int cases_t =0;
-		int hospital_t =0;
-		for(int i =0; i <condensed_covid_data_points.size(); i++) {
+
+		int death_t = 0;
+		int cases_t = 0;
+		int hospital_t = 0;
+		for (int i = 0; i < condensed_covid_data_points.size(); i++) {
 			death_t += condensed_covid_data_points.get(i).death_count;
 			cases_t += condensed_covid_data_points.get(i).case_count;
 			hospital_t += condensed_covid_data_points.get(i).hospital_count;
-			/*System.out.println(condensed_covid_data_points.get(i).county+" "+
-					condensed_covid_data_points.get(i).death_count+" "+
-					condensed_covid_data_points.get(i).case_count+" "+
-					condensed_covid_data_points.get(i).hospital_count);*/
+			/*
+			 * System.out.println(condensed_covid_data_points.get(i).county+" "+
+			 * condensed_covid_data_points.get(i).death_count+" "+
+			 * condensed_covid_data_points.get(i).case_count+" "+
+			 * condensed_covid_data_points.get(i).hospital_count);
+			 */
 		}
-		
+
 		System.out.println("death: " + death_t);
 		System.out.println("cases: " + cases_t);
 		System.out.println("hospital: " + hospital_t);
-		
+
+		boolean found = false;
+		for (int i = 0; i < condensed_covid_data_points.size(); i++) {
+			found = false;
+			for (int q = 0; q < county_data.size(); q++) {
+				if (condensed_covid_data_points.get(i).county.equals(county_data.get(q).county)) {
+					condensed_covid_data_points.get(i).info = county_data.get(q);
+					found = true;
+					break;
+				}
+			}
+			if(!found) {
+				System.out.println("could not match " + condensed_covid_data_points.get(i).county 
+						+ " to county info");
+			}
+		}
+
 	}
 
 	private void get_data() {
@@ -145,5 +165,5 @@ public class data_processing {
 	public Vector<condensed_covid_data> getCondensed_covid_data_points() {
 		return condensed_covid_data_points;
 	}
-	
+
 }

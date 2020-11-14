@@ -18,14 +18,16 @@ public class age_chart extends ApplicationFrame {
 	private static String title;
 	data_processing data_set;
 	int index;
+	boolean ages;
 
 	// public Graph_window(String t, data_storage data) {
-	public age_chart(String t, data_processing i, int in) {
+	public age_chart(String t, data_processing i, int in, boolean a) {
 		super(t);
 		title = t;
 		data_set = i;
 		index = in;
-		System.out.println(index);
+		ages = a;
+		//System.out.println(index);
 		// create_line_graph(data);
 		create_line_graph();
 	}
@@ -76,43 +78,69 @@ public class age_chart extends ApplicationFrame {
 		return dataset;
 	}
 
-	private  PieDataset createDataset() {
-
+	private PieDataset createDataset() {
 
 		Vector<pie_data> pie_data_points = new Vector<pie_data>();
 		Vector<age_data> data = data_set.getCondensed_covid_data_points().get(index).age_date_data;
-		String last_name ="";
+		String last_name = "";
 		pie_data data_add;
-		for(int i =0 ; i <data.size();i++) {
-			if(!last_name.equals(data.get(i).age_range)){
+		for (int i = 0; i < data.size(); i++) {
+			if (!last_name.equals(data.get(i).age_range)) {
 				data_add = new pie_data();
 				last_name = data.get(i).age_range;
 				data_add.age = last_name;
-				data_add.num =1;
+				data_add.num = 1;
 				pie_data_points.add(data_add);
-			}else {
-				pie_data_points.get(pie_data_points.size()-1).num +=1;
+			} else {
+				pie_data_points.get(pie_data_points.size() - 1).num += 1;
 			}
-			
+
 		}
 
 		DefaultPieDataset dataset = new DefaultPieDataset();
-		
-		for(int i=0;i<pie_data_points.size();i++) {
+
+		for (int i = 0; i < pie_data_points.size(); i++) {
 			dataset.setValue(pie_data_points.get(i).age, pie_data_points.get(i).num);
 		}
+
+		return dataset;
+	}
+
+	private PieDataset createDataset_groups() {
+
+		int population = data_set.getCondensed_covid_data_points().get(index).info.population;
+		double white_per = data_set.getCondensed_covid_data_points().get(index).info.per_white;
+		white_per /= 100;
+		double non_white_per = 1 - white_per;
+
+		System.out.println("population "+ population);
+		System.out.println("white_per "+ white_per);
 		
+		int white = (int) (population * white_per);
+		int poc = (int) (population * non_white_per);
+
+		DefaultPieDataset dataset = new DefaultPieDataset();
+
+		dataset.setValue("white", white);
+		dataset.setValue("POC", poc);
 
 		return dataset;
 	}
 
 	// public JPanel create_line_graph(data_storage data) {
 	public JPanel create_line_graph() {
-		JFreeChart lineChart = ChartFactory.createPieChart("", // chart title
-				createDataset(), // data
-				true, // include legend
-				true, false);
-
+		JFreeChart lineChart;
+		if (ages) {
+			lineChart = ChartFactory.createPieChart("", // chart title
+					createDataset(), // data
+					true, // include legend
+					true, false);
+		} else {
+			lineChart = ChartFactory.createPieChart("", // chart title
+					createDataset_groups(), // data
+					true, // include legend
+					true, false);
+		}
 		ChartPanel chartPanel = new ChartPanel(lineChart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
 		setContentPane(chartPanel);

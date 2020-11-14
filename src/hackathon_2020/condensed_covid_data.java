@@ -8,6 +8,8 @@ public class condensed_covid_data {
 		age_date_data = new Vector<age_data>();
 	}
 	
+	county_info info;
+	
 	public String county;
 	public int county_pop =-1;
 	Vector<age_data> age_date_data;

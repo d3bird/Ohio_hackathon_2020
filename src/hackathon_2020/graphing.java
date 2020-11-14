@@ -17,13 +17,18 @@ public class graphing {
 
 	covid_chart covid_chart2;
 	boolean covid_chart2_c;
-	
-	
+
 	age_chart age_chart1;
 	boolean age_chart1_c;
 
 	age_chart age_chart2;
 	boolean age_chart2_c;
+
+	age_chart group_chart1;
+	boolean group_chart1_c;
+
+	age_chart group_chart2;
+	boolean group_chart2_c;
 
 	public graphing(String t, data_processing i) {
 		data = i;
@@ -73,48 +78,83 @@ public class graphing {
 		}
 	}
 
-	public void create_age_chart(int index, int selcection) {
+	public void create_pie_chart(int index, int selcection, boolean ages) {
 		String title = "ages of people infected " + data.getCondensed_covid_data_points().get(index).county + " county";
 
-		if (selcection == 1) {
-			if (age_chart1_c) {
-				age_chart1.dispose();
-				age_chart1 = new age_chart(title, data, index);
-				age_chart1.setSize(400, 400);
-				RefineryUtilities.centerFrameOnScreen(age_chart1);
-				age_chart1.setVisible(true);
-				age_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				age_chart1_c = true;
+		if (ages) {
+			if (selcection == 1) {
+				if (age_chart1_c) {
+					age_chart1.dispose();
+					age_chart1 = new age_chart(title, data, index, ages);
+					age_chart1.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(age_chart1);
+					age_chart1.setVisible(true);
+					age_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					age_chart1_c = true;
+				} else {
+					age_chart1 = new age_chart(title, data, selcection, ages);
+					age_chart1.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(age_chart1);
+					age_chart1.setVisible(true);
+					age_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					age_chart1_c = true;
+				}
 			} else {
-				age_chart1 = new age_chart(title, data, selcection);
-				age_chart1.setSize(400, 400);
-				RefineryUtilities.centerFrameOnScreen(age_chart1);
-				age_chart1.setVisible(true);
-				age_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				age_chart1_c = true;
+				if (age_chart2_c) {
+					age_chart2.dispose();
+					age_chart2 = new age_chart(title, data, index, ages);
+					age_chart2.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(age_chart2);
+					age_chart2.setVisible(true);
+					age_chart2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					age_chart2_c = true;
+				} else {
+					age_chart2 = new age_chart(title, data, index, ages);
+					age_chart2.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(age_chart2);
+					age_chart2.setVisible(true);
+					age_chart2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					age_chart2_c = true;
+				}
 			}
 		} else {
-			if (age_chart2_c) {
-				age_chart2.dispose();
-				age_chart2 = new age_chart(title, data, index);
-				age_chart2.setSize(400, 400);
-				RefineryUtilities.centerFrameOnScreen(age_chart2);
-				age_chart2.setVisible(true);
-				age_chart2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				age_chart2_c = true;
+			if (selcection == 1) {
+				if (group_chart1_c) {
+					group_chart1.dispose();
+					group_chart1 = new age_chart(title, data, index, ages);
+					group_chart1.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(group_chart1);
+					group_chart1.setVisible(true);
+					group_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					group_chart1_c = true;
+				} else {
+					group_chart1 = new age_chart(title, data, selcection, ages);
+					group_chart1.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(group_chart1);
+					group_chart1.setVisible(true);
+					group_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					group_chart1_c = true;
+				}
 			} else {
-				age_chart2 = new age_chart(title, data, index);
-				age_chart2.setSize(400, 400);
-				RefineryUtilities.centerFrameOnScreen(age_chart2);
-				age_chart2.setVisible(true);
-				age_chart2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-				age_chart2_c = true;
+				if (group_chart2_c) {
+					group_chart2.dispose();
+					group_chart2 = new age_chart(title, data, index, ages);
+					group_chart2.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(group_chart2);
+					group_chart2.setVisible(true);
+					group_chart2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					group_chart2_c = true;
+				} else {
+					group_chart2 = new age_chart(title, data, index, ages);
+					group_chart2.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(group_chart2);
+					group_chart2.setVisible(true);
+					group_chart2.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+					group_chart2_c = true;
+				}
 			}
+
 		}
-	}
-
-	public void create_pop_chart(int index, int selcection) {
-
 	}
 
 }

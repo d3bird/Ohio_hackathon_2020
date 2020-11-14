@@ -338,42 +338,42 @@ public class GUI extends javax.swing.JFrame {
 
 	private void covid_graph_2MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = county_2_sel.getSelectedIndex();
-		System.out.println("creating covid graph for county2: " + index);
+		//System.out.println("creating covid graph for county2: " + index);
 		grahps.create_covid_graph(index, 2);
 	}
 
 	private void age_chart_2MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = county_2_sel.getSelectedIndex();
-		System.out.println("creating group cart for county2: " + index);
-		grahps.create_age_chart(index, 2);
+		//System.out.println("creating group cart for county2: " + index);
+		grahps.create_pie_chart(index, 2, true);
 	}
 
 	private void groups_chart_2MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = county_2_sel.getSelectedIndex();
-		System.out.println("creating age cart for county2: " + index);
-		grahps.create_pop_chart(index, 2);
+		//System.out.println("creating age cart for county2: " + index);
+		grahps.create_pie_chart(index, 2, false);
 	}
 
 	private void covid_graph_1MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = county_1_sel.getSelectedIndex();
-		System.out.println("creating covid graph for county1: " + index);
+		//System.out.println("creating covid graph for county1: " + index);
 		grahps.create_covid_graph(index, 1);
 	}
 
 	private void age_chart_1MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = county_1_sel.getSelectedIndex();
-		System.out.println("creating age cart for county1: " + index);
-		grahps.create_age_chart(index, 1);
+		//System.out.println("creating age cart for county1: " + index);
+		grahps.create_pie_chart(index, 1, true);
 	}
 
 	private void groups_chart_1MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = county_1_sel.getSelectedIndex();
-		System.out.println("creating groups cart for county1: " + index);
-		grahps.create_pop_chart(index, 1);
+		//System.out.println("creating groups cart for county1: " + index);
+		grahps.create_pie_chart(index, 1, false);
 	}
 
 	private void county_2_selItemStateChanged(java.awt.event.ItemEvent evt) {
-		System.out.println(county_2_sel.getSelectedIndex());// what index posiition in the list is changed to
+		//System.out.println(county_2_sel.getSelectedIndex());// what index posiition in the list is changed to
 		int index = county_2_sel.getSelectedIndex();
 		death_count_2.setText(String.valueOf(data_points.get(index).death_count));
 		case_count_num_2.setText(String.valueOf(data_points.get(index).case_count));
@@ -381,7 +381,7 @@ public class GUI extends javax.swing.JFrame {
 	}
 
 	private void county_1_selItemStateChanged(java.awt.event.ItemEvent evt) {
-		System.out.println(county_1_sel.getSelectedIndex());// what index posiition in the list is changed to
+		//System.out.println(county_1_sel.getSelectedIndex());// what index posiition in the list is changed to
 		int index = county_1_sel.getSelectedIndex();
 		death_count_1.setText(String.valueOf(data_points.get(index).death_count));
 		case_count_num_1.setText(String.valueOf(data_points.get(index).case_count));
