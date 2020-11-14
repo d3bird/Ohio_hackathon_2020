@@ -12,8 +12,10 @@ public class data_importing {
 
 	public data_importing() throws IOException {
 		covid_data_points = new Vector<covid_data_point>();
+		county_data = new  Vector<county_info>();
 		get_covid_data();
 		get_population_data();
+		get_demegraphic_data();
 	}
 
 	private void get_covid_data() throws IOException {
@@ -26,18 +28,13 @@ public class data_importing {
 		boolean first = true;
 		while ((row = csvReader.readLine()) != null) {
 			String[] data = row.split(",");
-			/*System.out.println(row);
-			// System.out.println(data.toString());
-
-			for (int i = 0; i < data.length; i++) {
-				if (data[i].equals("")) {
-					System.out.print("- ");
-				} else {
-					System.out.print(data[i] + " ");
-				}
-			}
-			System.out.println(data.length + " :length");
-*/
+			/*
+			 * System.out.println(row); // System.out.println(data.toString());
+			 * 
+			 * for (int i = 0; i < data.length; i++) { if (data[i].equals("")) {
+			 * System.out.print("- "); } else { System.out.print(data[i] + " "); } }
+			 * System.out.println(data.length + " :length");
+			 */
 			if (first) {
 				first = false;
 			} else {
@@ -103,8 +100,8 @@ public class data_importing {
 					System.out.println(e);
 				}
 
-				//temp.print();
-				//System.out.println();
+				// temp.print();
+				// System.out.println();
 				covid_data_points.add(temp);
 				count++;
 			}
@@ -116,9 +113,103 @@ public class data_importing {
 
 	private void get_population_data() throws IOException {
 
+		BufferedReader csvReader = new BufferedReader(new FileReader(
+				"C:\\Users\\dogbi\\eclipse-workspace\\hackathon_2020\\src\\hackathon_2020\\co-est2019-annres.csv"));
+		String row;
+		int count = 0;
+		county_info temp;
+		boolean first = true;
+		while ((row = csvReader.readLine()) != null) {
+			if (first && count < 5) {
+				count++;
+			} else {
+				if (first) {
+					first = false;
+					count = 0;
+				} else {
+					count++;
+				}
+				String[] data = row.split(",");
+				//System.out.println(row);
+				//System.out.println(data.length);
+				temp = new county_info();
+				String[] t_name =data[0].split(" "); 
+				String name ="";
+				boolean first_part = true;
+				for(int q =0; q <t_name.length;q++) {
+					if(t_name[q].equals("County")) {
+						break;
+					}else {
+						if(first_part) {
+						name+=t_name[q];
+						first_part =false;
+						}else {
+							name+=(" "+t_name[q]);
+						}
+					}
+				}
+				temp.county = name;
+				
+				if (data[12].equals("")) {
+					temp.population = -1;
+				} else {
+					temp.population = Integer.parseInt(data[12]);
+				}
+				//System.out.println(temp.county+" "+temp.population);
+				county_data.add(temp);
+				if(count >= 87) {
+					break;
+				}
+			}
+			// String[] data = row.split(",");
+			// System.out.println(row);
+			// System.out.println(data.length);
+		}
 	}
 
+	private void get_demegraphic_data() throws IOException {
+
+		BufferedReader csvReader = new BufferedReader(new FileReader(
+				"C:\\Users\\dogbi\\eclipse-workspace\\hackathon_2020\\src\\hackathon_2020\\Health_Opportunity_Index_County.csv"));
+		String row;
+		int count = 0;
+		county_info temp;
+		boolean first = true;
+		boolean found = false;
+		while ((row = csvReader.readLine()) != null) {
+			if (first) {
+				first = false;
+			} else {
+				String[] data = row.split(",");
+				//System.out.println(row);
+				
+				for(int i =0; i<county_data.size();i++) {
+					if(county_data.get(i).county.equals(data[0])) {
+						found = true;
+						county_data.get(i).per_white = Double.parseDouble(data[1]);
+						county_data.get(i).health_score = Double.parseDouble(data[2]);
+						break;
+					}
+				}
+					if(found) {
+						found = false;
+					}else {
+						System.out.println("could not match "+data[0]);
+					}
+				
+			}
+
+		}
+	}
+
+	
+	
 	private Vector<covid_data_point> covid_data_points;
+	private Vector<county_info> county_data;
+
+	public Vector<county_info> getCounty_data() {
+		return county_data;
+	}
 
 	public Vector<covid_data_point> getCovid_data_points() {
 		return covid_data_points;
