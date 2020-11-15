@@ -19,7 +19,7 @@ public class graphing {
 	boolean covid_chart2_c;
 
 	covid_chart covid_chart3;
-	boolean covid_chart_3;
+	boolean covid_chart3_c;
 	
 	age_chart age_chart1;
 	boolean age_chart1_c;
@@ -59,6 +59,23 @@ public class graphing {
 				covid_chart1.setVisible(true);
 				covid_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				covid_chart1_c = true;
+			} else {
+				covid_chart1 = new covid_chart(title, data, selcection);
+				covid_chart1.setSize(400, 400);
+				RefineryUtilities.centerFrameOnScreen(covid_chart1);
+				covid_chart1.setVisible(true);
+				covid_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				covid_chart1_c = true;
+			}
+		} else if (selcection == 3) {
+			if (covid_chart3_c) {
+				covid_chart3.dispose();
+				covid_chart3 = new covid_chart(title, data, index);
+				covid_chart3.setSize(400, 400);
+				RefineryUtilities.centerFrameOnScreen(covid_chart3);
+				covid_chart3.setVisible(true);
+				covid_chart3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				covid_chart3_c = true;
 			} else {
 				covid_chart1 = new covid_chart(title, data, selcection);
 				covid_chart1.setSize(400, 400);
@@ -107,6 +124,23 @@ public class graphing {
 					age_chart1.setVisible(true);
 					age_chart1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					age_chart1_c = true;
+				}
+			} else if (selcection == 3) {
+				if (age_chart3_c) {
+					age_chart3.dispose();
+					age_chart3 = new age_chart(title, data, index, ages);
+					age_chart3.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(age_chart1);
+					age_chart3.setVisible(true);
+					age_chart3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					age_chart3_c = true;
+				} else {
+					age_chart3 = new age_chart(title, data, selcection, ages);
+					age_chart3.setSize(400, 400);
+					RefineryUtilities.centerFrameOnScreen(age_chart1);
+					age_chart3.setVisible(true);
+					age_chart3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					age_chart3_c = true;
 				}
 			} else {
 				if (age_chart2_c) {

@@ -9,19 +9,20 @@ public class search extends javax.swing.JFrame {
 	 */
 
 	data_processing data_set;
-
+	graphing grahps;
 	String[] search_results1;
 	String[] search_results2;
 	String[] search_results3;
-
+	Vector<condensed_covid_data> og_data;
 	Vector<condensed_covid_data> data1;
 	Vector<condensed_covid_data> data2;
 	Vector<condensed_covid_data> data3;
 
 	String[] sorts;
-
+	
 	public search(data_processing i) {
 		data_set = i;
+		grahps = new graphing("title", i);
 		search_results1 = new String[data_set.getCondensed_covid_data_points().size()];
 		search_results2 = new String[data_set.getCondensed_covid_data_points().size()];
 		search_results3 = new String[data_set.getCondensed_covid_data_points().size()];
@@ -32,15 +33,123 @@ public class search extends javax.swing.JFrame {
 		sorts[2] = "Health score";
 		sorts[3] = "poverty percent";
 		sorts[4] = "population of county";
-		data1 = data_set.getCondensed_covid_data_points();
+		/*data1 = data_set.getCondensed_covid_data_points();
 		data2 = data_set.getCondensed_covid_data_points();
 		data3 = data_set.getCondensed_covid_data_points();
+		og_data= data_set.getCondensed_covid_data_points();*/
+		
+		data1 = new Vector<condensed_covid_data>(data_set.getCondensed_covid_data_points().size());
+		data2 = new Vector<condensed_covid_data>(data_set.getCondensed_covid_data_points().size());
+		data3 = new Vector<condensed_covid_data>(data_set.getCondensed_covid_data_points().size());
+		og_data= new Vector<condensed_covid_data>(data_set.getCondensed_covid_data_points().size());
+		condensed_covid_data t_data;
+		for(int q =0; q <data_set.getCondensed_covid_data_points().size();q++) {
+			t_data =new condensed_covid_data();
+			data1.add(t_data);
+			data1.get(q).county = data_set.getCondensed_covid_data_points().get(q).county;
+			data1.get(q).info = data_set.getCondensed_covid_data_points().get(q).info;
+			data1.get(q).county_pop = data_set.getCondensed_covid_data_points().get(q).county_pop;
+			data1.get(q).case_count = data_set.getCondensed_covid_data_points().get(q).case_count;
+			data1.get(q).death_count = data_set.getCondensed_covid_data_points().get(q).death_count;
+			data1.get(q).hospital_count = data_set.getCondensed_covid_data_points().get(q).hospital_count;
+			data1.get(q).money_for_food = data_set.getCondensed_covid_data_points().get(q).money_for_food;
+			data1.get(q).affected_people = data_set.getCondensed_covid_data_points().get(q).affected_people;
+			
+			t_data =new condensed_covid_data();
+			data3.add(t_data);
+			data3.get(q).county = data_set.getCondensed_covid_data_points().get(q).county;
+			data3.get(q).info = data_set.getCondensed_covid_data_points().get(q).info;
+			data3.get(q).county_pop = data_set.getCondensed_covid_data_points().get(q).county_pop;
+			data3.get(q).case_count = data_set.getCondensed_covid_data_points().get(q).case_count;
+			data3.get(q).death_count = data_set.getCondensed_covid_data_points().get(q).death_count;
+			data3.get(q).hospital_count = data_set.getCondensed_covid_data_points().get(q).hospital_count;
+			data3.get(q).money_for_food = data_set.getCondensed_covid_data_points().get(q).money_for_food;
+			data3.get(q).affected_people = data_set.getCondensed_covid_data_points().get(q).affected_people;
+			
+			t_data =new condensed_covid_data();
+			data2.add(t_data);
+			data2.get(q).county = data_set.getCondensed_covid_data_points().get(q).county;
+			data2.get(q).info = data_set.getCondensed_covid_data_points().get(q).info;
+			data2.get(q).county_pop = data_set.getCondensed_covid_data_points().get(q).county_pop;
+			data2.get(q).case_count = data_set.getCondensed_covid_data_points().get(q).case_count;
+			data2.get(q).death_count = data_set.getCondensed_covid_data_points().get(q).death_count;
+			data2.get(q).hospital_count = data_set.getCondensed_covid_data_points().get(q).hospital_count;
+			data2.get(q).money_for_food = data_set.getCondensed_covid_data_points().get(q).money_for_food;
+			data2.get(q).affected_people = data_set.getCondensed_covid_data_points().get(q).affected_people;
+			
+			t_data =new condensed_covid_data();
+			og_data.add(t_data);
+			og_data.get(q).county = data_set.getCondensed_covid_data_points().get(q).county;
+			og_data.get(q).info = data_set.getCondensed_covid_data_points().get(q).info;
+			og_data.get(q).county_pop = data_set.getCondensed_covid_data_points().get(q).county_pop;
+			og_data.get(q).case_count = data_set.getCondensed_covid_data_points().get(q).case_count;
+			og_data.get(q).death_count = data_set.getCondensed_covid_data_points().get(q).death_count;
+			og_data.get(q).hospital_count = data_set.getCondensed_covid_data_points().get(q).hospital_count;
+			og_data.get(q).money_for_food = data_set.getCondensed_covid_data_points().get(q).money_for_food;
+			og_data.get(q).affected_people = data_set.getCondensed_covid_data_points().get(q).affected_people;
+		}
+		
 		sort(-1, -1);
 		initComponents();
+		upselected();
 	}
 
+	public void upselected() {
+		result_list.setSelectedIndex(0);
+		result_list1.setSelectedIndex(0);
+		result_list2.setSelectedIndex(0);
+		
+		int index = result_list.getSelectedIndex();
+		case_count_1.setText(String.valueOf(data1.get(index).case_count));
+		hosp_count1.setText(String.valueOf(data1.get(index).hospital_count));
+		death_count1.setText(String.valueOf(data1.get(index).death_count));
+		health_score_1.setText(String.valueOf(data1.get(index).info.health_score));
+		pop_count1.setText(String.valueOf(data1.get(index).info.population));
+		
+		poverty_per1.setText(String.valueOf(data1.get(index).info.poverty_rate));
+		food_1.setText(String.valueOf(data1.get(index).money_for_food));
+		people_1.setText(String.valueOf(data1.get(index).affected_people));
+		
+		index = result_list1.getSelectedIndex();
+		case_count_2.setText(String.valueOf(data2.get(index).case_count));
+		hosp_count2.setText(String.valueOf(data2.get(index).hospital_count));
+		death_count2.setText(String.valueOf(data2.get(index).death_count));
+		health_score_2.setText(String.valueOf(data2.get(index).info.health_score));
+		pop_count2.setText(String.valueOf(data2.get(index).info.population));
+		
+		poverty_per2.setText(String.valueOf(data2.get(index).info.poverty_rate));
+		food_2.setText(String.valueOf(data2.get(index).money_for_food));
+		people_2.setText(String.valueOf(data2.get(index).affected_people));
+		
+		index = result_list2.getSelectedIndex();
+		case_count_3.setText(String.valueOf(data3.get(index).case_count));
+		hosp_count3.setText(String.valueOf(data3.get(index).hospital_count));
+		death_count3.setText(String.valueOf(data3.get(index).death_count));
+		health_score_3.setText(String.valueOf(data3.get(index).info.health_score));
+		pop_count3.setText(String.valueOf(data3.get(index).info.population));
+		
+		poverty_per3.setText(String.valueOf(data3.get(index).info.poverty_rate));
+		food_3.setText(String.valueOf(data3.get(index).money_for_food));
+		people_3.setText(String.valueOf(data3.get(index).affected_people));
+	}
+	
+	public int get_index_unsorted(String target) {
+		int output =-1;
+		for(int i =0; i <og_data.size();i++) {
+			if(og_data.get(i).county.equalsIgnoreCase(target)) {
+				output =i;
+				System.out.println("target at pos "+output);
+				break;
+			}
+		}
+		
+		return output;
+	}
+	
 	public void sort(int collum, int type) {
 
+		System.out.println(collum + " "+ type);
+		
 		if (type == -1 && collum == -1) {
 			for (int i = 0; i < data1.size(); i++) {
 				search_results1[i] = data1.get(i).county;
@@ -157,7 +266,7 @@ public class search extends javax.swing.JFrame {
 				}
 			});
 		}
-
+		//upselected();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -851,8 +960,14 @@ public class search extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
-	private void covidActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+	private void covidActionPerformed(java.awt.event.ActionEvent evt) {//first button
+		int s_index = result_list.getSelectedIndex();
+		int index = get_index_unsorted(data1.get(s_index).county);
+		if(index ==-1) {
+			System.out.println(data1.get(s_index).county+" was not found");
+		}
+		
+		grahps.create_covid_graph(index, 1);
 	}
 
 	private void age_groupsMouseClicked(java.awt.event.MouseEvent evt) {
@@ -860,7 +975,10 @@ public class search extends javax.swing.JFrame {
 	}
 
 	private void groupsMouseClicked(java.awt.event.MouseEvent evt) {
-		// TODO add your handling code here:
+		int s_index = result_list.getSelectedIndex();
+		int index = get_index_unsorted(data1.get(s_index).county);
+
+		//grahps.create_pie_chart(index, 1, false);
 	}
 
 	private void covidMouseClicked(java.awt.event.MouseEvent evt) {
@@ -870,6 +988,7 @@ public class search extends javax.swing.JFrame {
 	private void result_listMouseClicked(java.awt.event.MouseEvent evt) {
 		// System.out.println(result_list.getSelectedIndex());
 		int index = result_list.getSelectedIndex();
+		//int index = get_index_unsorted(og_data.get(s_index).county);
 		case_count_1.setText(String.valueOf(data1.get(index).case_count));
 		hosp_count1.setText(String.valueOf(data1.get(index).hospital_count));
 		death_count1.setText(String.valueOf(data1.get(index).death_count));
@@ -895,6 +1014,7 @@ public class search extends javax.swing.JFrame {
 
 	private void result_list1MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = result_list1.getSelectedIndex();
+		//int index = get_index_unsorted(data2.get(s_index).county);
 		case_count_2.setText(String.valueOf(data2.get(index).case_count));
 		hosp_count2.setText(String.valueOf(data2.get(index).hospital_count));
 		death_count2.setText(String.valueOf(data2.get(index).death_count));
@@ -908,6 +1028,7 @@ public class search extends javax.swing.JFrame {
 
 	private void result_list2MouseClicked(java.awt.event.MouseEvent evt) {
 		int index = result_list2.getSelectedIndex();
+		//int index = get_index_unsorted(data3.get(s_index).county);
 		case_count_3.setText(String.valueOf(data3.get(index).case_count));
 		hosp_count3.setText(String.valueOf(data3.get(index).hospital_count));
 		death_count3.setText(String.valueOf(data3.get(index).death_count));
@@ -925,7 +1046,10 @@ public class search extends javax.swing.JFrame {
 	}
 
 	private void covid1ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		int s_index = result_list1.getSelectedIndex();
+		int index = get_index_unsorted(data2.get(s_index).county);
+		//System.out.println("")
+		grahps.create_covid_graph(index, 2);
 	}
 
 	private void groups1MouseClicked(java.awt.event.MouseEvent evt) {
@@ -941,7 +1065,10 @@ public class search extends javax.swing.JFrame {
 	}
 
 	private void covid2ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		int s_index = result_list2.getSelectedIndex();
+		int index = get_index_unsorted(data2.get(s_index).county);
+		//System.out.println("")
+		grahps.create_covid_graph(index, 3);
 	}
 
 	private void groups2MouseClicked(java.awt.event.MouseEvent evt) {
