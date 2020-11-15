@@ -18,6 +18,8 @@ public class condensed_covid_data {
 	public int case_count = -1;
 	public int death_count = -1;
 	public int hospital_count = -1;
+	
+	public double money_for_food =-1;
 }
 
 class covid_case_com implements Comparator<condensed_covid_data>{
