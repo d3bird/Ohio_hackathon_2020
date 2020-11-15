@@ -128,9 +128,9 @@ public class GUI extends javax.swing.JFrame {
 			}
 		});
 
-		county_2_lab.setText("County 2");
+		county_2_lab.setText("county 2");
 
-		covid_graph_1.setText("covid graph");
+		covid_graph_1.setText("cases of covid");
 		covid_graph_1.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				covid_graph_1MouseClicked(evt);
@@ -149,7 +149,7 @@ public class GUI extends javax.swing.JFrame {
 			}
 		});
 
-		groups_chart_1.setText("groups affected");
+		groups_chart_1.setText("minority percent");
 		groups_chart_1.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				groups_chart_1MouseClicked(evt);
@@ -167,7 +167,7 @@ public class GUI extends javax.swing.JFrame {
 
 		hosp_count_1.setText("0");
 
-		jLabel6.setText("Hospitalized Count");
+		jLabel6.setText("hospitalized count");
 
 		jLabel7.setText("death count");
 
@@ -175,11 +175,11 @@ public class GUI extends javax.swing.JFrame {
 
 		jLabel9.setText("case count");
 
-		jLabel10.setText("Hospitalized Count");
+		jLabel10.setText("hospitalized count");
 
 		jLabel11.setText("death count");
 
-		covid_graph_2.setText("covid graph");
+		covid_graph_2.setText("cases of covid");
 		covid_graph_2.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				covid_graph_2MouseClicked(evt);
@@ -198,7 +198,7 @@ public class GUI extends javax.swing.JFrame {
 			}
 		});
 
-		groups_chart_2.setText("groups affected");
+		groups_chart_2.setText("minority percent");
 		groups_chart_2.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				groups_chart_2MouseClicked(evt);
@@ -225,11 +225,11 @@ public class GUI extends javax.swing.JFrame {
 		
         jLabel3.setText("health score");
 
-        jLabel4.setText("poverty percent");
+        jLabel4.setText("percent in poverty");
 
         jLabel5.setText("population");
 
-        jLabel8.setText("amount for food");
+        jLabel8.setText("cost for food");
 
         health_1.setText("0");
 
@@ -241,7 +241,7 @@ public class GUI extends javax.swing.JFrame {
 
         food_2.setText("0");
 
-        jLabel12.setText("amount for food");
+        jLabel12.setText("cost for food");
 
         jLabel13.setText("population");
 
@@ -249,7 +249,7 @@ public class GUI extends javax.swing.JFrame {
 
         pov_2.setText("0");
 
-        jLabel14.setText("poverty percent");
+        jLabel14.setText("percent in poverty");
 
         jLabel15.setText("health score");
 

@@ -416,7 +416,7 @@ public class search extends javax.swing.JFrame {
 			}
 		});
 
-		covid.setText("Covid cases");
+		covid.setText("cases of covid");
 		covid.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				covidMouseClicked(evt);
@@ -439,7 +439,7 @@ public class search extends javax.swing.JFrame {
                 age_groupsActionPerformed(evt);
             }
         });
-		groups.setText("groups affected");
+		groups.setText("minority percent");
 		groups.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				groupsMouseClicked(evt);
@@ -490,7 +490,7 @@ public class search extends javax.swing.JFrame {
 		});
 		jScrollPane3.setViewportView(result_list2);
 
-		covid1.setText("Covid cases");
+		covid1.setText("cases of covid");
 		covid1.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				covid1MouseClicked(evt);
@@ -502,7 +502,7 @@ public class search extends javax.swing.JFrame {
 			}
 		});
 
-		groups1.setText("groups affected");
+		groups1.setText("minority percent");
 		groups1.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				groups1MouseClicked(evt);
@@ -524,7 +524,7 @@ public class search extends javax.swing.JFrame {
                 age_groups1ActionPerformed(evt);
             }
         });
-		covid2.setText("Covid cases");
+		covid2.setText("cases of covid");
 		covid2.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				covid2MouseClicked(evt);
@@ -536,7 +536,7 @@ public class search extends javax.swing.JFrame {
 			}
 		});
 
-		groups2.setText("groups affected");
+		groups2.setText("minority percent");
 		groups2.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				groups2MouseClicked(evt);
@@ -560,11 +560,11 @@ public class search extends javax.swing.JFrame {
         });
 		jLabel3.setText("case count");
 
-		jLabel8.setText("Hospitalized Count");
+		jLabel8.setText("hospitalized count");
 
 		jLabel9.setText("death count");
 
-		jLabel10.setText("Health score");
+		jLabel10.setText("health score");
 
 		case_count_1.setText("0");
 
@@ -576,7 +576,7 @@ public class search extends javax.swing.JFrame {
 
 		health_score_2.setText("0");
 
-		health_score_l.setText("Health score");
+		health_score_l.setText("health score");
 
 		jLabel17.setText("death count");
 
@@ -584,7 +584,7 @@ public class search extends javax.swing.JFrame {
 
 		hosp_count2.setText("0");
 
-		jLabel20.setText("Hospitalized Count");
+		jLabel20.setText("hospitalized count");
 
 		jLabel21.setText("case count");
 
@@ -592,7 +592,7 @@ public class search extends javax.swing.JFrame {
 
 		health_score_3.setText("0");
 
-		jLabel24.setText("Health score");
+		jLabel24.setText("health score");
 
 		jLabel25.setText("death count");
 
@@ -600,13 +600,13 @@ public class search extends javax.swing.JFrame {
 
 		hosp_count3.setText("0");
 
-		jLabel28.setText("Hospitalized Count");
+		jLabel28.setText("hospitalized count");
 
 		jLabel29.setText("case count");
 
 		case_count_3.setText("0");
 
-		jLabel4.setText("poverty percent");
+		jLabel4.setText("percent in poverty");
 
 		poverty_per1.setText("0");
 
@@ -630,7 +630,7 @@ public class search extends javax.swing.JFrame {
 
 		jLabel33.setText("population");
 
-		jLabel34.setText("poverty percent");
+		jLabel34.setText("percent in poverty");
 
 		jCheckBox3.setText("inverse results");
 		jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -641,7 +641,7 @@ public class search extends javax.swing.JFrame {
 
 		jLabel37.setText("population");
 
-		jLabel38.setText("poverty percent");
+		jLabel38.setText("percent in poverty");
 
 		poverty_per2.setText("0");
 
@@ -651,7 +651,7 @@ public class search extends javax.swing.JFrame {
 
 		pop_count3.setText("0");
 
-		jLabel5.setText("amount for food");
+		jLabel5.setText("cost for food");
 
 		jLabel11.setText("affected people");
 
@@ -659,11 +659,11 @@ public class search extends javax.swing.JFrame {
 
 		people_1.setText("0");
 
-		jLabel6.setText("amount for food");
+		jLabel6.setText("cost for food");
 
 		jLabel12.setText("affected people");
 
-		jLabel7.setText("amount for food");
+		jLabel7.setText("cost for food");
 
 		jLabel13.setText("affected people");
 
