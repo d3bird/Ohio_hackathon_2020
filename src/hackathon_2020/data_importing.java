@@ -253,6 +253,7 @@ public class data_importing {
 		}
 	}
 
+	
 	private Vector<covid_data_point> covid_data_points;
 	private Vector<county_info> county_data;
 

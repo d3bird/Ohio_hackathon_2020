@@ -142,10 +142,43 @@ public class data_processing {
 					break;
 				}
 			}
-			if(!found) {
-				System.out.println("could not match " + condensed_covid_data_points.get(i).county 
-						+ " to county info");
+			if (!found) {
+				System.out.println("could not match " + condensed_covid_data_points.get(i).county + " to county info");
 			}
+		}
+		calculate_mony_for_food();
+	}
+
+	private double roundDown(double d) {
+        return ((long) (d * 1e2)) / 1e2;
+        //Long typecast will remove the decimals
+    }
+	
+	private void calculate_mony_for_food() {
+		for (int i = 0; i < condensed_covid_data_points.size(); i++) {
+			int amount_c = 0;
+			int amount_a = 0;
+			double rate_c = 5.2;
+			double rate_a = 8.35;
+			int current_day =15;
+			Vector<age_data> age_date_data = condensed_covid_data_points.get(i).age_date_data;
+
+			for (int q = 0; q < age_date_data.size(); q++) {
+				String date[] = age_date_data.get(q).date.split("/");
+				if(date[0].equalsIgnoreCase("11")) {
+					int amount_days = current_day - Integer.parseInt(date[1]);
+					//System.out.println("amount of days: "+ amount_days+ " current "+current_day+ " reported "+ date[1]);
+					if(age_date_data.get(q).age_range.contains("19")) {
+						amount_c++;
+					}else {
+						amount_a++;
+					}
+				}
+			}
+
+			double output = (amount_c * rate_c) + (amount_a * rate_a);
+			condensed_covid_data_points.get(i).money_for_food = roundDown(output);
+			condensed_covid_data_points.get(i).affected_people = amount_c+amount_a;
 		}
 
 	}

@@ -25,7 +25,7 @@ public class covid_chart extends ApplicationFrame {
 		title = t;
 		data_set = i;
 		index = in;
-		//System.out.println(index);
+		// System.out.println(index);
 		// create_line_graph(data);
 		create_line_graph();
 	}
@@ -53,25 +53,25 @@ public class covid_chart extends ApplicationFrame {
 
 		for (int i = 0; i < data.size(); i++) {
 			// dataset.addValue(data.get(i).case_count, cases, data.get(i).date);
-			//System.out.println(data.get(i).case_count + " " + data.get(i).date);
+			// System.out.println(data.get(i).case_count + " " + data.get(i).date);
 			String temp[] = data.get(i).date.split("/");
 			int mon = Integer.parseInt(temp[0]);
-			mounths[mon] += data.get(i).case_count;
-			//mounths[mon] = mounths[mon] + data.get(i).case_count;
+			mounths[mon-1] += data.get(i).case_count;
+			// mounths[mon] = mounths[mon] + data.get(i).case_count;
 		}
 
-		dataset.addValue(mounths[0], cases, "jan");
-		dataset.addValue(mounths[1], cases, "1980");
-		dataset.addValue(mounths[2], cases, "1990");
-		dataset.addValue(mounths[3], cases, "2000");
-		dataset.addValue(mounths[4], cases, "2010");
-		dataset.addValue(mounths[5], cases, "2014");
-		dataset.addValue(mounths[6], cases, "2014");
-		dataset.addValue(mounths[7], cases, "2014");
-		dataset.addValue(mounths[8], cases, "2014");
-		dataset.addValue(mounths[9], cases, "2014");
-		dataset.addValue(mounths[10], cases, "2014");
-		dataset.addValue(mounths[11], cases, "2014");
+		dataset.addValue(mounths[0], cases, "Jan");//uary");
+		dataset.addValue(mounths[1], cases, "Feb");//ruary");
+		dataset.addValue(mounths[2], cases, "Mar");//ch");
+		dataset.addValue(mounths[3], cases, "Apr");//il");
+		dataset.addValue(mounths[4], cases, "May");
+		dataset.addValue(mounths[5], cases, "Jun");//e");
+		dataset.addValue(mounths[6], cases, "Jul");//y");
+		dataset.addValue(mounths[7], cases, "Aug");//ust ");
+		dataset.addValue(mounths[8], cases, "Sep");//tember");
+		dataset.addValue(mounths[9], cases, "Oct");//ober");
+		dataset.addValue(mounths[10], cases, "Nov");//ember");
+		//dataset.addValue(mounths[11], cases, "December");
 
 		return dataset;
 	}

@@ -29,12 +29,21 @@ public class GUI extends javax.swing.JFrame {
 		death_count_1.setText(String.valueOf(data_points.get(index).death_count));
 		case_count_num_1.setText(String.valueOf(data_points.get(index).case_count));
 		hosp_count_1.setText(String.valueOf(data_points.get(index).hospital_count));
+		
+		health_1.setText(String.valueOf(data_points.get(index).info.health_score));
+		pov_1.setText(String.valueOf(data_points.get(index).info.poverty_rate));
+		pop_1.setText(String.valueOf(data_points.get(index).info.population));
+		food_1.setText(String.valueOf(data_points.get(index).money_for_food));
 
 		index = county_2_sel.getSelectedIndex();
 		death_count_2.setText(String.valueOf(data_points.get(index).death_count));
 		case_count_num_2.setText(String.valueOf(data_points.get(index).case_count));
 		hosp_count_2.setText(String.valueOf(data_points.get(index).hospital_count));
-
+		
+		health_2.setText(String.valueOf(data_points.get(index).info.health_score));
+		pov_2.setText(String.valueOf(data_points.get(index).info.poverty_rate));
+		pop_2.setText(String.valueOf(data_points.get(index).info.population));
+		food_2.setText(String.valueOf(data_points.get(index).money_for_food));
 	}
 
 	private void create_list_counties() {
@@ -484,6 +493,11 @@ public class GUI extends javax.swing.JFrame {
 		death_count_2.setText(String.valueOf(data_points.get(index).death_count));
 		case_count_num_2.setText(String.valueOf(data_points.get(index).case_count));
 		hosp_count_2.setText(String.valueOf(data_points.get(index).hospital_count));
+		
+		health_2.setText(String.valueOf(data_points.get(index).info.health_score));
+		pov_2.setText(String.valueOf(data_points.get(index).info.poverty_rate));
+		pop_2.setText(String.valueOf(data_points.get(index).info.population));
+		food_2.setText(String.valueOf(data_points.get(index).money_for_food));
 	}
 
 	private void county_1_selItemStateChanged(java.awt.event.ItemEvent evt) {
@@ -492,6 +506,11 @@ public class GUI extends javax.swing.JFrame {
 		death_count_1.setText(String.valueOf(data_points.get(index).death_count));
 		case_count_num_1.setText(String.valueOf(data_points.get(index).case_count));
 		hosp_count_1.setText(String.valueOf(data_points.get(index).hospital_count));
+		
+		health_1.setText(String.valueOf(data_points.get(index).info.health_score));
+		pov_1.setText(String.valueOf(data_points.get(index).info.poverty_rate));
+		pop_1.setText(String.valueOf(data_points.get(index).info.population));
+		food_1.setText(String.valueOf(data_points.get(index).money_for_food));
 	}
 
     private void adv_searchMouseClicked(java.awt.event.MouseEvent evt) {                                        
