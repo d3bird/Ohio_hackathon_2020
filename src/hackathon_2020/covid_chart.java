@@ -25,7 +25,7 @@ public class covid_chart extends ApplicationFrame {
 		title = t;
 		data_set = i;
 		index = in;
-		// System.out.println(index);
+		System.out.println("cart og_data "+index);
 		// create_line_graph(data);
 		create_line_graph();
 	}
