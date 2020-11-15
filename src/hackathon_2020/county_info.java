@@ -8,4 +8,5 @@ public class county_info {
 	public double per_white = -1;
 	public double health_score = -1;
 
+	public double poverty_rate =-1;
 }

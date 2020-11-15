@@ -12,10 +12,11 @@ public class data_importing {
 
 	public data_importing() throws IOException {
 		covid_data_points = new Vector<covid_data_point>();
-		county_data = new  Vector<county_info>();
+		county_data = new Vector<county_info>();
 		get_covid_data();
 		get_population_data();
 		get_demegraphic_data();
+		get_money_data();
 	}
 
 	private void get_covid_data() throws IOException {
@@ -55,7 +56,7 @@ public class data_importing {
 				} else {
 					temp.age_range = data[2];
 				}
-				//System.out.println(data[3]);
+				// System.out.println(data[3]);
 				if (data[3].equals("")) {
 					temp.onset_date = "-1";
 				} else {
@@ -130,34 +131,34 @@ public class data_importing {
 					count++;
 				}
 				String[] data = row.split(",");
-				//System.out.println(row);
-				//System.out.println(data.length);
+				// System.out.println(row);
+				// System.out.println(data.length);
 				temp = new county_info();
-				String[] t_name =data[0].split(" "); 
-				String name ="";
+				String[] t_name = data[0].split(" ");
+				String name = "";
 				boolean first_part = true;
-				for(int q =0; q <t_name.length;q++) {
-					if(t_name[q].equals("County")) {
+				for (int q = 0; q < t_name.length; q++) {
+					if (t_name[q].equals("County")) {
 						break;
-					}else {
-						if(first_part) {
-						name+=t_name[q];
-						first_part =false;
-						}else {
-							name+=(" "+t_name[q]);
+					} else {
+						if (first_part) {
+							name += t_name[q];
+							first_part = false;
+						} else {
+							name += (" " + t_name[q]);
 						}
 					}
 				}
 				temp.county = name;
-				
+
 				if (data[12].equals("")) {
 					temp.population = -1;
 				} else {
 					temp.population = Integer.parseInt(data[12]);
 				}
-				//System.out.println(temp.county+" "+temp.population);
+				// System.out.println(temp.county+" "+temp.population);
 				county_data.add(temp);
-				if(count >= 87) {
+				if (count >= 87) {
 					break;
 				}
 			}
@@ -181,29 +182,77 @@ public class data_importing {
 				first = false;
 			} else {
 				String[] data = row.split(",");
-				//System.out.println(row);
-				
-				for(int i =0; i<county_data.size();i++) {
-					if(county_data.get(i).county.equals(data[0])) {
+				// System.out.println(row);
+
+				for (int i = 0; i < county_data.size(); i++) {
+					if (county_data.get(i).county.equals(data[0])) {
 						found = true;
 						county_data.get(i).per_white = Double.parseDouble(data[1]);
 						county_data.get(i).health_score = Double.parseDouble(data[2]);
 						break;
 					}
 				}
-					if(found) {
-						found = false;
-					}else {
-						System.out.println("could not match "+data[0]);
-					}
-				
+				if (found) {
+					found = false;
+				} else {
+					System.out.println("could not match " + data[0]);
+				}
+
 			}
 
 		}
 	}
 
-	
-	
+	private void get_money_data() throws IOException {
+
+		BufferedReader csvReader = new BufferedReader(new FileReader(
+				"C:\\Users\\dogbi\\eclipse-workspace\\hackathon_2020\\src\\hackathon_2020\\average_income_per_county.csv"));
+		String row;
+		int count = 0;
+		county_info temp;
+		boolean first = true;
+		boolean found = false;
+		boolean found_n = false;
+		String[] data_l= new String[1];
+		while ((row = csvReader.readLine()) != null) {
+			if (first) {
+				if (count == 0) {
+					System.out.println(row);
+					data_l = row.split(",");
+				} else if (count >= 126) {
+					first = false;
+				}
+				count++;
+			} else {
+				String[] data = row.split(",");
+				System.out.println(row);
+				// System.out.println(data.length);
+				
+				for (int q = 2; q < data.length; q += 2) {
+					String temp_s[] = data_l[q-1].split(" ");
+					String county_name = temp_s[0];
+					
+					for (int i = 0; i < county_data.size(); i++) {
+						if (county_data.get(i).county.equals(county_name)||county_data.get(i).county.equals(county_name.substring(1))) {
+							county_data.get(i).poverty_rate = Double.parseDouble(data[q]);
+							System.out.println(county_name+" poverty rate = "+ county_data.get(i).poverty_rate);
+							found_n= true;
+							break;
+						}
+					}
+					if (found_n) {
+						found_n = false;
+					} else {
+						System.out.println("could not match " + county_name);
+					}
+				}
+				break;
+
+			}
+
+		}
+	}
+
 	private Vector<covid_data_point> covid_data_points;
 	private Vector<county_info> county_data;
 
